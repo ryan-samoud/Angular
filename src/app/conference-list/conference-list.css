@@ -1,0 +1,169 @@
+:host {
+  display: block;
+}
+
+.confs {
+  max-width: 840px;
+  margin: 20px 0;
+  padding: 10px 24px 24px 24px;
+  border-left: 4px solid #0f766e;
+  border-radius: 14px 0 0 14px;
+  font-family: Georgia, 'Times New Roman', serif;
+  color: #1e293b;
+}
+
+/* ---------- En-tête ---------- */
+.confs-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.confs-icon {
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #ccfbf1;
+  background: #d1fae5;
+  background: #e0fcf8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+}
+
+.confs-title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #1e3a5f;
+}
+
+.confs-subtitle {
+  margin: 4px 0 0;
+  font-size: 14px;
+  color: #64748b;
+}
+
+/* ---------- Recherche ---------- */
+.confs-search {
+  display: block;
+  width: 100%;
+  max-width: 435px;
+  box-sizing: border-box;
+  padding: 12px 16px;
+  margin-bottom: 2px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  background: #fff;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 14px;
+  color: #1e293b;
+  outline: none;
+}
+
+.confs-search::placeholder {
+  font-style: italic;
+  color: #94a3b8;
+}
+
+.confs-search:focus {
+  border-color: #0f766e;
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.15);
+}
+
+/* ---------- Grille ---------- */
+.confs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.conf-card {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 18px 18px 20px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.conf-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+}
+
+.conf-name {
+  margin: 0 0 14px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: #1e3a5f;
+}
+
+.conf-card p {
+  margin: 0 0 14px;
+  font-size: 14px;
+  color: #0f172a;
+}
+
+.conf-card p b {
+  font-weight: 700;
+}
+
+/* ---------- Boutons ---------- */
+.btn {
+  margin-top: auto;
+  align-self: flex-start;
+  padding: 9px 18px;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: filter 0.15s ease;
+}
+
+.btn:hover:not(:disabled) {
+  filter: brightness(1.1);
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+}
+
+.confs-empty {
+  margin: 18px 0 0;
+  padding: 18px;
+  border: 1px dashed #cbd5e1;
+  border-radius: 14px;
+  background: #f8fafc;
+  font-size: 14px;
+  color: #64748b;
+  text-align: center;
+}
+
+.green {
+  background: #15803d;
+}
+
+.orange {
+  background: #d97706;
+}
+
+.red {
+  background: #dc2626;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 760px) {
+  .confs-grid {
+    grid-template-columns: 1fr;
+  }
+}

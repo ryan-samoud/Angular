@@ -1,0 +1,33 @@
+<section class="confs">
+  <header class="confs-header">
+    <div class="confs-icon">📅</div>
+    <div>
+      <h2 class="confs-title">Liste des conférences à venir</h2>
+      <p class="confs-subtitle">Cliquez sur une conférence pour afficher ses détails.</p>
+    </div>
+  </header>
+
+  <input class="confs-search" placeholder="Taper le titre de la conférence"
+         [ngModel]="search()" (ngModelChange)="search.set($event)" />
+
+  @if (conferences().length === 0) {
+    <p class="confs-empty">Aucune conférence enregistrée pour le moment.</p>
+  } @else if (filteredConferences().length === 0) {
+    <p class="confs-empty">Aucune conférence ne correspond à votre recherche.</p>
+  } @else {
+    <div class="confs-grid">
+      @for (c of filteredConferences(); track c.id) {
+        <article class="conf-card">
+          <h3 class="conf-name">{{ c.title | uppercase }}</h3>
+          <p><b>Date :</b> {{ c.date | date: 'dd/MM/yyyy' }}</p>
+          <p><b>Lieu :</b> {{ c.place }}</p>
+          @let left = c.maxParticipants - c.nbParticipants;
+          <p><b>Places restantes :</b> {{ left }}</p>
+          <button class="btn" [class]="buttonColor(left)" [disabled]="left === 0" (click)="register(c.id)">
+            S'inscrire
+          </button>
+        </article>
+      }
+    </div>
+  }
+</section>
