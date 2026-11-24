@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { signal } from '@angular/core';
+import { User } from '../Model/user';
 
 @Component({
   selector: 'app-profile',
@@ -8,7 +9,11 @@ import { signal } from '@angular/core';
   styleUrl: './profile.css',
 })
 export class Profile {
-  User =signal("Profil utilisateur")
-  Name = signal("Ryan")
-  Email= signal ("Ryan.Samoud@esprit.tn")
+  Userinfo =signal("Profil utilisateur");
+  
+  userFromParent = input<User>();
+  msg = output<String>();
+  sendmsg(){
+    this.msg.emit('hello');
+  }
 }

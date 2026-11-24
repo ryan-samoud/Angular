@@ -10,24 +10,32 @@
   <input class="confs-search" placeholder="Taper le titre de la conférence"
          [ngModel]="search()" (ngModelChange)="search.set($event)" />
 
-  @if (conferences().length === 0) {
-    <p class="confs-empty">Aucune conférence enregistrée pour le moment.</p>
-  } @else if (filteredConferences().length === 0) {
+  @if (filteredConferences().length === 0) {
     <p class="confs-empty">Aucune conférence ne correspond à votre recherche.</p>
+    
   } @else {
     <div class="confs-grid">
       @for (c of filteredConferences(); track c.id) {
-        <article class="conf-card">
+        @if (c.date > today){
+        <article class="conf-card" [class.selected]="c.id === selected()?.id" (click)="select(c)">
           <h3 class="conf-name">{{ c.title | uppercase }}</h3>
           <p><b>Date :</b> {{ c.date | date: 'dd/MM/yyyy' }}</p>
           <p><b>Lieu :</b> {{ c.place }}</p>
           @let left = c.maxParticipants - c.nbParticipants;
           <p><b>Places restantes :</b> {{ left }}</p>
-          <button class="btn" [class]="buttonColor(left)" [disabled]="left === 0" (click)="register(c.id)">
+          <button class="btn" [ngClass]="{ green: left >= 10, orange: left > 0 && left < 10, red: left === 0 }" [disabled]="left === 0" (click)="register(c.id); $event.stopPropagation()">
             S'inscrire
           </button>
         </article>
+        }
+      }
+      @empty {
+        <p class="confs-empty">Aucune conférence enregistrée pour le moment.</p>
       }
     </div>
+  }
+
+  @if (selected(); as conf) {
+    <app-conference-details [conference]="conf" (registered)="register($event)" />
   }
 </section>

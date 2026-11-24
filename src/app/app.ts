@@ -7,6 +7,7 @@ import { Friends } from './friends/friends';
 import { Notifications } from './notifications/notifications';
 import { ConferenceList } from './conference-list/conference-list';
 import { Footer } from './footer/footer';
+import { User } from './Model/user';
 
 @Component({
   selector: 'app-root',
@@ -16,4 +17,11 @@ import { Footer } from './footer/footer';
 })
 export class App {
   protected readonly title = signal('project');
+  user=signal<User>({
+    name: 'Ryan',
+    email: 'Ryan.Samoud@esprit.tn',
+  })
+  showmsg(msg:String){
+    alert(msg)
+  }
 }

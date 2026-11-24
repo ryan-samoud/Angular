@@ -1,0 +1,20 @@
+<section class="details">
+  <header class="details-header">
+    <div class="details-icon">🎤</div>
+    <div>
+      <h2 class="details-title">Détail de la conférence</h2>
+      <span class="details-badge">Conférence sélectionnée depuis la liste.</span>
+    </div>
+  </header>
+
+  @let c = conference();
+  @let left = c.maxParticipants - c.nbParticipants;
+  <div class="details-body">
+    <p><b>Titre :</b> {{ c.title }}</p>
+    <p><b>Description :</b> {{ c.description }}</p>
+    <p><b>Lieu :</b> {{ c.place }}</p>
+    <p><b>Date :</b> {{ c.date | date: 'yyyy-MM-dd' }}</p>
+    <p><b>Places disponibles :</b> {{ left }}</p>
+    <button class="details-btn" [disabled]="left === 0" (click)="registered.emit(c.id)">S'inscrire</button>
+  </div>
+</section>
